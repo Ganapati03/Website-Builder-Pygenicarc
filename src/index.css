@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom Scrollbar for modern look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400;
+}
+
+/* ── EditableText: Inline Editing Styles ──────────────────────────── */
+.editable-text--hover {
+  cursor: pointer !important;
+  border-radius: 4px;
+  transition: box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.editable-text--hover:hover {
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+  background-color: rgba(99, 102, 241, 0.03);
+}
+
+.editable-text--active {
+  cursor: text !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.45) !important;
+  background-color: rgba(99, 102, 241, 0.05) !important;
+  border-radius: 4px;
+  outline: none !important;
+}
+
+.editable-text[data-placeholder]::after {
+  content: attr(data-placeholder);
+  opacity: 0.35;
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* Ensure inline-editing layer allows pointer events through */
+.inline-edit-layer {
+  pointer-events: auto !important;
+}
+
+.inline-edit-layer .editable-text {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 5;
+}
